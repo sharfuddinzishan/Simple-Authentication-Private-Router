@@ -14,6 +14,16 @@ const Header = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li className="nav-item">
+                                <NavLink className="nav-link"
+                                    to="/review"
+                                    activeStyle={{
+                                        fontWeight: "bold",
+                                        color: "#636"
+                                    }}>
+                                    Order Review
+                                </NavLink>
+                            </li>
                             {
                                 !user.email &&
                                 <>
@@ -54,7 +64,7 @@ const Header = () => {
                                         </li>
                                         <li className="nav-item">
                                             <NavLink onClick={logOut} className="nav-link"
-                                                to="/"
+                                                to="/home"
                                                 activeStyle={{
                                                     fontWeight: "bold",
                                                     color: "#636"

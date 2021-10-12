@@ -1,8 +1,23 @@
 import React from 'react';
+import { useHistory, useLocation } from 'react-router';
 import useAuth from './../../Hooks/useAuth';
 
 const Login = () => {
-    const { signInGoogle } = useAuth()
+    const { signInGoogle, setUser, setError } = useAuth()
+    const location = useLocation();
+    const history = useHistory();
+    const redirect_uri = location.state?.from || '/';
+
+    const handleGoogleLogin = () => {
+        signInGoogle()
+            .then((response) => {
+                setUser(response.user);
+                setError('');
+                history.push(redirect_uri)
+            }
+            )
+    }
+
     return (
         <div className="container">
             <h1 className="text-center text-muted">Login Panel</h1>
@@ -25,7 +40,7 @@ const Login = () => {
                         </div>
                     </form>
                     <div className="text-center">
-                        <button onClick={signInGoogle} className="btn btn-link text-light text-decoration-none">Sign In Gmail</button>
+                        <button onClick={handleGoogleLogin} className="btn btn-link text-light text-decoration-none">Sign In Gmail</button>
                     </div>
                 </div>
             </div>
